@@ -64,10 +64,17 @@ Or using JupyterLab:
 ```bash
 jupyter lab data_workflow.ipynb
 ```
-
 Run all cells from top to bottom (Cell > Run All).
 
 The notebook was verified to execute from top to bottom in a local virtual environment using Jupyter `nbconvert`.
+
+### 5. Generate PDF report
+
+To generate module_summary report in pdf format, run the following command. See [Pandoc installation instructions](https://pandoc.org/installing.html)
+
+```
+pandoc module_summary.md -o module_summary.pdf
+```
 
 ## Project Structure
 
