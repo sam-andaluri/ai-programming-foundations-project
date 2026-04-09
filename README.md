@@ -10,13 +10,48 @@ This project uses the Titanic passenger dataset to build a reusable analysis wor
 
 ## How to Run the Project
 
-### 1. Install Dependencies
+### 1. Install `uv`
+
+If `uv` is not installed yet, install it with one of the following methods:
 
 ```bash
-pip install -r requirements.txt
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-### 2. Run the Notebook
+Then restart your shell, or reload your shell configuration so the `uv` command is available.
+
+### 2. Create a Local Python Environment
+
+```bash
+uv venv .venv --python 3.8
+source .venv/bin/activate
+```
+
+Python 3.8 is the minimum supported version for this project. If Python 3.8 is not available locally, you can create the environment with any newer compatible Python version supported by the project.
+
+If `uv` cannot find your preferred Python interpreter automatically, point it to a local executable:
+
+```bash
+uv venv .venv --python /path/to/python3.8
+source .venv/bin/activate
+```
+
+### 3. Sync Dependencies
+
+```bash
+uv pip sync --python .venv/bin/python requirements.txt
+```
+
+If you update the direct dependencies in `requirements.in`, regenerate the lock file before syncing:
+
+```bash
+uv pip compile requirements.in --python-version 3.8 --upgrade -o requirements.txt
+uv pip sync requirements.txt
+```
+
+If you are using a newer Python version, replace `3.8` in the compile command with that interpreter version so the lock file matches your local environment.
+
+### 4. Run the Notebook
 
 Open and run `data_workflow.ipynb` in Jupyter:
 
@@ -32,7 +67,7 @@ jupyter lab data_workflow.ipynb
 
 Run all cells from top to bottom (Cell > Run All).
 
-The notebook was verified to execute from top to bottom in the `census-ml` environment using Jupyter `nbconvert`.
+The notebook was verified to execute from top to bottom in a local virtual environment using Jupyter `nbconvert`.
 
 ## Project Structure
 
@@ -48,7 +83,8 @@ ai-programming-foundations-project/
 ## Requirements
 
 - Python 3.8+
-- `requirements.txt` contains the environment package versions captured from the working notebook environment
+- `requirements.in` lists the direct project dependencies
+- `requirements.txt` is the compiled lock file used to reproduce the environment
 
 ## Cleaning Reflection
 
