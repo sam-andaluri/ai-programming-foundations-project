@@ -31,7 +31,7 @@ Run all cells from top to bottom (Cell > Run All).
 ## Project Structure
 
 ```
-project-1/
+ai-programming-foundations-project/
 ├── data_workflow.ipynb    # Main analysis notebook
 ├── titanic.csv            # Dataset
 ├── requirements.txt       # Python dependencies
