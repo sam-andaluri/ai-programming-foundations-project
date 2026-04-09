@@ -8,6 +8,8 @@ A complete, reproducible data workflow analyzing the Titanic passenger dataset. 
 
 This project uses the Titanic passenger dataset to build a reusable analysis workflow in a Jupyter notebook. The notebook loads the data with Pandas, applies documented cleaning functions, performs exploratory analysis, and creates three visualizations that highlight relationships between survival, passenger class, sex, age, fare, and cabin availability.
 
+**Project GitHub repo**: https://github.com/sam-andaluri/ai-programming-foundations-project
+
 ## How to Run the Project
 
 ### 1. Install `uv`
