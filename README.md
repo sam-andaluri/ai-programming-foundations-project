@@ -76,7 +76,8 @@ ai-programming-foundations-project/
 ├── data_workflow.ipynb    # Main analysis notebook
 ├── titanic.csv            # Dataset
 ├── module_summary.md      # Written summary with citations
-├── requirements.txt       # Python dependencies
+├── requirements.in        # Python dependencies
+├── requirements.txt       # Python dependencies lock file 
 ├── README.md              # This file
 ```
 
