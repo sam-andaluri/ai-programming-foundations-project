@@ -4,9 +4,11 @@
 
 This project implements a complete, reproducible data workflow analyzing the Titanic passenger dataset. Using Python, Pandas, and visualization libraries, I built a pipeline that ingests raw data, cleans missing values, performs exploratory analysis, and generates visualizations to understand factors influencing passenger survival rates.
 
-**Dataset:** [Titanic - Machine Learning from Disaster](https://www.kaggle.com/c/titanic)
+**Project GitHub repo**: https://github.com/sam-andaluri/ai-programming-foundations-project
 
 ## Dataset Description
+
+**Dataset:** [Titanic - Machine Learning from Disaster](https://www.kaggle.com/c/titanic)
 
 The analysis uses the Titanic passenger dataset from Kaggle's *Titanic: Machine Learning from Disaster* competition (Kaggle, n.d.). The dataset contains information about 891 passengers aboard the RMS Titanic, which sank on April 15, 1912. The dataset includes 12 columns capturing passenger demographics (age, sex), travel details (passenger class, fare, cabin), family relationships (siblings/spouses, parents/children), and survival outcome. Key variables analyzed include `Survived` (target), `Pclass` (socioeconomic status proxy), `Sex`, `Age`, and `Fare`. The dataset presents realistic data quality challenges including missing values in Age (19.9%), Cabin (77.1%), and Embarked (0.2%) columns.
 
