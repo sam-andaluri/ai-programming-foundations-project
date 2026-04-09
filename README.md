@@ -4,6 +4,10 @@ A complete, reproducible data workflow analyzing the Titanic passenger dataset. 
 
 **Dataset:** [Titanic - Machine Learning from Disaster](https://www.kaggle.com/c/titanic) (891 rows, 12 columns)
 
+## Project Description
+
+This project uses the Titanic passenger dataset to build a reusable analysis workflow in a Jupyter notebook. The notebook loads the data with Pandas, applies documented cleaning functions, performs exploratory analysis, and creates three visualizations that highlight relationships between survival, passenger class, sex, age, fare, and cabin availability.
+
 ## How to Run the Project
 
 ### 1. Install Dependencies
@@ -28,18 +32,46 @@ jupyter lab data_workflow.ipynb
 
 Run all cells from top to bottom (Cell > Run All).
 
+The notebook was verified to execute from top to bottom in the `census-ml` environment using Jupyter `nbconvert`.
+
 ## Project Structure
 
 ```
 ai-programming-foundations-project/
 ├── data_workflow.ipynb    # Main analysis notebook
 ├── titanic.csv            # Dataset
+├── module_summary.md      # Written summary with citations
 ├── requirements.txt       # Python dependencies
 ├── README.md              # This file
-└── module_summary.pdf     # Written report with citations
 ```
 
 ## Requirements
 
 - Python 3.8+
-- See `requirements.txt` for package dependencies
+- `requirements.txt` contains the environment package versions captured from the working notebook environment
+
+## Cleaning Reflection
+
+The cleaning steps were necessary because the raw dataset contains missing values and inconsistent feature usefulness. `Age` had substantial missingness, so I used grouped median imputation by passenger class and sex to preserve demographic structure better than a single global fill value. `Embarked` had two missing values, which were filled with the modal embarkation port because the gap was small and the feature is categorical. `Cabin` was mostly missing, so instead of forcing noisy imputation, I converted it into a simpler `HasCabin` indicator that preserved whether a cabin record existed.
+
+## Bias Awareness
+
+Poor cleaning choices could introduce bias into the analysis. A global age imputation strategy could flatten meaningful class and sex differences, which would distort later survival comparisons. Dropping all rows with missing values would also disproportionately remove passengers from some groups and could make the sample less representative. Even the chosen cleaning approach has tradeoffs: converting `Cabin` to `HasCabin` removes deck-level detail, and grouped median imputation assumes missing ages behave similarly within each class and sex group. These limitations are acknowledged in the notebook and summary so the analysis is not presented as more certain than the data allows.
+
+## Reflection Questions
+
+### How would this workflow change for a machine learning project?
+
+For an ML workflow, the notebook would need to move beyond descriptive analysis into train/validation/test splitting, feature encoding, leakage checks, and metric-based model evaluation. I would separate preprocessing into reusable functions or a pipeline object so the exact same transformations could be applied during training and inference. I would also track experiments more formally, including saved model artifacts, evaluation tables, and configuration details.
+
+### How would I prepare this dataset for a neural network?
+
+A neural network would require stricter preprocessing than the current exploratory notebook. Numeric features would need scaling, categorical features such as `Sex` and `Embarked` would need encoding, and the final feature matrix would need to be fully numeric with no missing values. I would also consider creating trainable embeddings or one-hot encodings for categorical columns, then export the cleaned arrays or tensors into a dedicated training script rather than relying on notebook cells alone.
+
+### Where could agentic automation help?
+
+Agentic automation could speed up repeated workflow tasks such as profiling missing values, generating baseline charts, validating notebook outputs, checking citation formatting, and testing whether the notebook still executes after edits. It would also be useful for suggesting refactors from notebook code into reusable modules, summarizing changes between commits, and flagging when documentation no longer matches the actual analysis outputs.
+
+## Professional Workflow Notes
+
+This submission is designed to resemble a reusable foundation for later ML and deep learning work. The notebook is organized into clear workflow stages, the cleaning logic is encapsulated in functions with docstrings, the outputs are interpretable, and the repository history shows incremental development on a separate `develop` branch before eventual merge to `main`.
